@@ -3,8 +3,33 @@ import { Button, Image, Pressable, StyleSheet, Text, TextInput, View } from 'rea
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useState } from 'react';
+import FilterFlights from './components/FilterFlights';
 
 export default function App() {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [filter, setFilter] = useState([]);
+
+  const openFilterModal = () => {
+    setModalVisible(true)
+  };
+
+  const closeFilterModal = () => {
+    setModalVisible(false);
+  };
+
+  const filterHandler = (departure, arrival) => {
+    setFilter(currentFilter => [
+      ...currentFilter,
+      { departureDestination: departure,
+        arrivalDestination: arrival     
+      }
+    ])
+    setModalVisible(false)
+  };
+
+  console.log(filter)
+
   return (
     <View style={styles.container}>
       <Image source={require('./assets/images/logo.png')} style={styles.image} />
@@ -15,19 +40,25 @@ export default function App() {
           style={({ pressed }) => pressed && styles.pressedItem}>
             <View style={styles.links}>
               <Text style={styles.text}>All flights</Text>
-              <MaterialIcons name="flight" size={24} color='#fff' />
+              <MaterialIcons name='flight' size={24} color='#D0D0D0' />
             </View>
         </Pressable>
         <Pressable 
-          // onPress={onDeleteGoal.bind(this, id)}
+          onPress={openFilterModal}
           android_ripple={{color: '#ddd'}}
           style={({ pressed }) => pressed && styles.pressedItem}>
             <View style={styles.links}>
               <Text style={styles.text}>Filter flights</Text>
-              <Ionicons name="filter" size={24} color='#fff' />
+              <Ionicons name='filter' size={24} color='#D0D0D0' />
             </View>
         </Pressable>
       </View>
+      
+      <FilterFlights 
+        visible={modalVisible} 
+        filterHandler={filterHandler}
+        closeFilterModal={closeFilterModal}
+      />
      
       <View  style={styles.sectionSearch}>
         <View style={styles.search}>         
@@ -39,7 +70,7 @@ export default function App() {
           android_ripple={{color: '#ddd'}}
           style={({ pressed }) => pressed && styles.pressedItem}>
             <View style={styles.button}>
-              <FontAwesome5 name="search-location" size={24} color='#fff' />
+              <FontAwesome5 name='search-location' size={24} color='#D0D0D0' />
             </View>
         </Pressable>      
       </View>
@@ -53,27 +84,27 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#88a598ff',
     alignItems: 'center',
-    paddingVertical: 40,
+    paddingVertical: 50,
     // justifyContent: 'center',
   },
   image: {
-    height: 106,
-    width: 200,
+    height: 159,
+    width: 300,
     margin: 20
   },
   links: {
     flexDirection: 'row',
     padding: 16,
-    color: '#fff',
+    color: '#D0D0D0',
     marginHorizontal: 8,
     borderRadius: 8,
     backgroundColor: '#656e7eff',
-    width: '60%'
+    width: '40%'
   },
   text: {
     marginHorizontal: 16,
     fontSize: 16,
-    color: '#fff',
+    color: '#D0D0D0',
     width: '100%'
   },
   section: {
@@ -86,7 +117,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: '70%',
     padding: 16,
-    color: '#fff',
+    color: '#D0D0D0',
     marginHorizontal: 8,
     borderRadius: 8,
     backgroundColor: '#656e7eff',
@@ -98,7 +129,7 @@ const styles = StyleSheet.create({
   textInput: {
     width: '100%',
     marginHorizontal: 16,
-    color: '#fff',
+    color: '#D0D0D0',
     borderRadius: 8,
     fontSize: 18
   },
