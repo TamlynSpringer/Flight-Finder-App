@@ -28,8 +28,8 @@ const AllFlights = () => {
 
   return (
     <View>
-      <Text>Flights between Oslo & Stockholm</Text>
-      <View style={{flexDirection: 'row', margin: 8}}>
+      <Text style={{textAlign: 'center', fontWeight: 'bold'}}>Flights between Oslo & Stockholm</Text>
+      <View style={{flexDirection: 'row', margin: 12}}>
         <Text style={styles.text}>Flight code</Text>
         <Text style={styles.text}>Depart <AntDesign name="calendar" size={12} color="black" /> </Text>
         <Text style={styles.text}>Depart <AntDesign name="clockcircleo" size={12} color="black" /> </Text>
