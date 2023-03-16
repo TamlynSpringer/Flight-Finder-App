@@ -22,35 +22,37 @@ const FilterFlights = ({ visible, filterHandler, closeFilterModal }) => {
   ];
 
   return (
-    <Modal visible={visible} animationType='slide' style={styles.modal}>
-      <View>
-        <Text><MaterialIcons name="flight-takeoff" size={24} color="black" /></Text>
-        <SelectList 
-          placeholder='Select depature location'
-          data={data}
-          setSelected={(val) => setSelectedDeparture(val)}
-        />
-        <Text><MaterialIcons name="flight-land" size={24} color="black" /></Text>
-        <SelectList 
-          placeholder='Select arrival location'
-          data={data}
-          setSelected={(val) => setSelectedArrival(val)}
-        />
-      </View>
-      <View style={styles.buttonContainer}>
-        <View style={styles.button}>
-          <Button
-            onPress={locationHandler} 
-            title='☑' 
-            color='#243045'
+    <Modal visible={visible} animationType='slide'>
+      <View style={styles.modal}>
+        <View>
+          <Text><MaterialIcons name="flight-takeoff" size={24} color="black" /></Text>
+          <SelectList 
+            placeholder='Select depature location'
+            data={data}
+            setSelected={(val) => setSelectedDeparture(val)}
+          />
+          <Text><MaterialIcons name="flight-land" size={24} color="black" /></Text>
+          <SelectList 
+            placeholder='Select arrival location'
+            data={data}
+            setSelected={(val) => setSelectedArrival(val)}
           />
         </View>
-        <View style={styles.button}>
-          <Button
-          onPress={closeFilterModal} 
-          title='☒'
-          color='#243045' 
-        />
+        <View style={styles.buttonContainer}>
+          <View style={styles.button}>
+            <Button
+              onPress={locationHandler} 
+              title='☑' 
+              color='#243045'
+            />
+          </View>
+          <View style={styles.button}>
+            <Button
+            onPress={closeFilterModal} 
+            title='☒'
+            color='#243045' 
+          />
+          </View>
         </View>
       </View>
     </Modal>
@@ -62,11 +64,10 @@ export default FilterFlights;
 const styles = StyleSheet.create({
   modal: {
     flex: 1,
-    backgroundColor: '#a2c5b5ff',
+    backgroundColor: '#c2dfd1ff',
     alignItems: 'center',
     paddingVertical: 50,
-    height: '50%',
-    
+    height: 200,
   },
   buttonContainer: {
     flexDirection: 'row',

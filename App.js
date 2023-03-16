@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useState } from 'react';
 import FilterFlights from './components/FilterFlights';
+import AllFlights from './components/AllFlights';
 
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,8 +28,6 @@ export default function App() {
     ])
     setModalVisible(false)
   };
-
-  console.log(filter)
 
   return (
     <View style={styles.container}>
@@ -74,7 +73,7 @@ export default function App() {
             </View>
         </Pressable>      
       </View>
-
+      <AllFlights />
     </View>
   );
 }
@@ -82,7 +81,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#88a598ff',
+    backgroundColor: '#738d81ff',
     alignItems: 'center',
     paddingVertical: 50,
     // justifyContent: 'center',
@@ -123,6 +122,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#656e7eff',
   },
   sectionSearch: {
+    flex: 2,
     flexDirection: 'row',
     alignItems: 'center',
   },
